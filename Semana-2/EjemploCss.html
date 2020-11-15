@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo con Css</title>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: darkcyan;
+        }
+        
+        li {
+            float: left;
+        }
+        
+        li a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 14px 16px;
+        }
+        /*Comentario*/
+        
+        li a:hover:not(#inicial) {
+            background-color: slategrey;
+        }
+        
+        #logo {
+            float: right;
+            padding-right: 20px;
+            padding-top: 10px;
+        }
+        
+        #contenedor-imagen {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+        }
+        
+        #banner {
+            width: 100%;
+        }
+        
+        #centrado {
+            position: absolute;
+            top: 52%;
+            left: 35%;
+            font-size: 3.5em;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: bold;
+            color: #153550;
+        }
+        
+        #titulo {
+            background-color: black;
+            margin: 0;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        
+        .contenido {
+            width: 100%;
+        }
+        
+        .parcial {
+            width: 45%;
+            text-align: justify;
+            float: left;
+            margin: 2%;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="container">
+        <div>
+            <ul>
+                <li><a id='inicial' href="">Inicio</a></li>
+                <li><a href="">Acerca de Nosotros</a></li>
+                <li><a href="">Productos</a></li>
+                <li><a href="">Contactanos</a></li>
+                <li><a href="">Aviso de Privacidad</a></li>
+                <li id="logo"><img src="img/logo.png" alt=""></li>
+            </ul>
+        </div>
+
+        <div id="contenedor-imagen">
+            <img id="banner" src="img/banner.jpg" alt="">
+            <div id="centrado">
+                Diplomado Full Stack
+            </div>
+        </div>
+
+        <div id="titulo">
+            <h1>Modulo HTML-CSS</h1>
+        </div>
+        <div class="contenido">
+            <div class="parcial">
+                <h2>¿Qué es HTML? </h2>
+                <p>HTML son las siglas de HyperText Markup Language, que constituye un estándar asumido y reconocido a nivel mundial. ... Es decir, con el lenguaje HTML se crean las páginas web, pero no su diseño, mientras que con CSS (un lenguaje de hojas
+                    de estilos), se le da a esos contenidos una apariencia atractiva para el usuario.</p>
+
+            </div>
+            <div class="parcial">
+                <img src="img/html.jpeg" alt="" style=" width: 100%; ">
+            </div>
+        </div>
+
+        <div class="contenido">
+            <div class="parcial">
+                <img src="img/css.png" alt="" style=" width: 100%; ">
+
+            </div>
+            <div class="parcial">
+                <h2>¿Qué es CSS? </h2>
+                <p>CSS, en español «Hojas de estilo en cascada», es un lenguaje de diseño gráfico para definir y crear la presentación de un documento estructurado escrito en un lenguaje de marcado.</p>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+</body>
+
+</html>
