@@ -1,0 +1,11 @@
+Realizar las modificaciones correspondientes a su pagina de la sesión anterior, para que incluya lo siguiente: 
+
+Elección de tema. 
+
+1. Barra de Navegación 
+2. Banner principal con texto 
+3. Color de fondo de la pagina (intentar no blanco) 
+4. En el caso de las canciones, el texto de la canción tiene que ir a un lado de la foto (como en el ejemplo) 
+5. Colores y estilo a elección. 
+6. La barra de navegación principal deberá dirigir a las otras paginas, estas tambien deberán tener estilos diferentes. 
+7. Cambiar el estilo y tamaño de fuente, no utilizar los predeterminados.
