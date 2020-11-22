@@ -1,0 +1,23 @@
+h1 {
+    color: red;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 50%;
+    margin-left: 25%;
+}
+
+thead,
+tr,
+td {
+    border: 1px solid black;
+}
+
+thead {
+    background-color: dimgrey;
+    color: white;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: larger;
+}
