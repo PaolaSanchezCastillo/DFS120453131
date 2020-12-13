@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EjemploJS</title>
+</head>
+
+<body>
+    <h1>JavaScript & jQuery</h1>
+
+    <script>
+        console.log('Hola Mundo');
+        var fecha = new Date();
+        console.log(fecha);
+        //document.write(fecha);
+        var dia = fecha.getDay();
+        //document.write("El dia de la semana es " + dia);
+        var horaDia = fecha.getHours();
+        //document.write('La hora es ' + horaDia);
+        var minutoDia = fecha.getMinutes();
+        // document.write('Los minutos son ' + minutoDia);
+
+        var lunes = 1;
+        var martes = 2;
+        var domingo = 0;
+
+        if (dia === domingo) {
+            if (horaDia < 14) {
+                document.write('Es domingo y estan en clase');
+            } else {
+                document.write("Ya saliste de clases");
+            }
+            // document.write(horaDi);
+            if (horaDia > 14 || horaDia < 15) {
+                document.write("Son entre las 14 y 15 hrs, es decir, acabas de salir");
+            }
+        }
+
+        //EStructuras de control 
+
+        var calificacion = Math.round(Math.random() * 10);
+        console.log(calificacion);
+
+        if (calificacion >= 6) {
+            console.log('El alumno esta aprobado');
+        } else {
+            console.log('El alumno rebrobo');
+        }
+
+
+
+
+
+        /// Validar lo siguiente 
+        // Decirles el dia y la hora de la semana
+        // Si el dia es domingo entre las 9 y 14:00 hrs 'Usted se encuentra en clase'
+        // Si la hora es entre las 11 y las 12 se encuentran en descanso  'Esta en descanso'
+        // Si son entre las 11 y las 12 //Faltan X minutos para que se termine el descanso
+    </script>
+
+</body>
+
+</html>
