@@ -4,3 +4,4 @@ mongoose.connect('mongodb://localhost/Crud', {
     useNewUrlParser: true, 
     useFindAndModify: false
 }).then(db => console.log('Conexion exitosa'))
+.catch(err=> console.error(err));

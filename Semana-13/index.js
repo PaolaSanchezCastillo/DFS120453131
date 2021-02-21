@@ -4,11 +4,13 @@ const exphs = require('express-handlebars')
 const session = require('express-session')
 const flash = require('connect-flash')
 const methodOverride = require('method-override');
+const passport = require('passport');
 
 
 const app = express();
 
-require('./database')
+require('./database');
+require('./src/config/passport');
 
 
 // Configuraciones
@@ -21,10 +23,10 @@ app.engine('.hbs', exphs({
     partialsDir : path.join(app.get('views'), 'partials'), 
     extname: '.hbs'
 })); 
-
-
 app.set('view engine', '.hbs'); 
 
+
+//Middleware
 app.use(express.urlencoded({
     extended : false
 })); 
@@ -37,7 +39,12 @@ app.use(session({
     saveUninitialized: true
 })); 
 
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(flash()); 
+
 
 app.use((req, res, next) => {
     res.locals.successMessage = req.flash('successMessage');

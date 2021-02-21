@@ -3,20 +3,69 @@ const passport = require('passport');
 const router = express.Router(); 
 const User  = require('../model/User'); 
 
+
 router.get('/users', (req, res) =>{
     res.send("Usuarios desde la BD"); 
 
 }); 
 
 
-router.post('/users/nuevo',(req, res) =>{
+router.get('/users/entrar', 
+(req, res) => { res.render('users/Login.hbs')}); 
+
+router.get('/users/nuevo', 
+(req, res) => { res.render('users/Signup.hbs')}); 
+
+
+router.post('/users/nuevo',async(req, res, next) =>{
     console.log(req.body); 
-    res.send("HOli");
+   // res.send("HOli");
     let errors = []; 
-    const {nombreUsuario, mail, password, confirmPassword } = req.body; 
+    const {nombreUsuario, email, password, confirmPassword } = req.body; 
    
 
-})
+    if(nombreUsuario.length <= 1 ){
+        errors.push({text : 'El nombre es muy corto'})
+    }
+    if(email.length <= 0 ){
+        errors.push({text : 'El correo esta vacio'})
+    }
+    if(password.length < 8 ){
+        errors.push({text : 'El password debe contener por lo menos 8 caracteres'})
+    }
+    if(password.length < 8 ){
+        errors.push({text : 'La confirmacion del password debe contener por lo menos 8 caracteres'})
+    }
+
+
+    if(errors.length > 0 ) { 
+        res.send('El usuario ya existe');
+       errors.forEach(element => {
+           console.log(element)
+       });
+        
+    }else{
+        // Verificamos que no tengamos un usuario registrado
+        const mailUser = await User.findOne({email: email}); 
+        if(mailUser){
+            res.flash('errorMessage', 'El correo ya esta registrado'); 
+        }else{
+            // CRUD 
+            // CREATE  (SOLAMENTE DEL LADO DEL SERVIDOR)
+            console.log('Empezar a crear a Usuario'); 
+            //1er paso creacion del objeto
+            const newUser = new User({nombreUsuario, email, password});  // CREAR UN OBJETO EN BASE A LA CLASE USUARIO
+            console.log(newUser); 
+            //CREATE DE LADO DE LA BD 
+            //2do paso guardar al objeto dentro de la BD 
+            await newUser.save(); // crear un usuario dentro de la bd 
+
+        }
+
+
+    }
+
+});
 
 
 module.exports = router; 
