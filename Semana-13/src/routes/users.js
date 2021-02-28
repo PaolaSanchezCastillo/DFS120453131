@@ -39,33 +39,56 @@ router.post('/users/nuevo',async(req, res, next) =>{
 
 
     if(errors.length > 0 ) { 
-        res.send('El usuario ya existe');
-       errors.forEach(element => {
-           console.log(element)
-       });
-        
+        res.render('/users/nuevo', {errors, nombreUsuario, password, email})
+        console.log('ERROR');
     }else{
         // Verificamos que no tengamos un usuario registrado
+
         const mailUser = await User.findOne({email: email}); 
+        console.log('Se verifica que no exista un usuario')
         if(mailUser){
-            res.flash('errorMessage', 'El correo ya esta registrado'); 
+            console.error('El usuario ya existe'); 
+            errors.push({text : 'El usuario ya existe'});
+            //errors.forEach(element =>       req.flash('errorMessage', element););
+            req.flash('errorMessage', 'El correo ya esta registrado'); 
+      
+            res.redirect('/users/nuevo');
         }else{
+            console.log('El usuario no existe')
             // CRUD 
             // CREATE  (SOLAMENTE DEL LADO DEL SERVIDOR)
             console.log('Empezar a crear a Usuario'); 
             //1er paso creacion del objeto
             const newUser = new User({nombreUsuario, email, password});  // CREAR UN OBJETO EN BASE A LA CLASE USUARIO
+            //Encriptamos el pass del usuario
+            newUser.password = await newUser.encryptPassword(password);
             console.log(newUser); 
             //CREATE DE LADO DE LA BD 
             //2do paso guardar al objeto dentro de la BD 
             await newUser.save(); // crear un usuario dentro de la bd 
-
+            req.flash('successMessage', 'Usuario registrado exitosamente'); 
+            res.redirect('/users/nuevo');
         }
 
 
     }
 
 });
+
+router.post('/users/entrar',  passport.authenticate('local', {
+    successRedirect: '/usuarios/listaUsuarios', 
+    failureRedirect : '/users/entrar', 
+    failureFlash :true
+})); 
+
+
+router.get('/usuarios/listaUsuarios', async(req, res) =>{
+    const usuarios = await User.find().sort({date: 'desc'}).lean();
+  
+        res.render('users/ListaUsuarios.hbs', {usuarios});
+      
+});
+
 
 
 module.exports = router; 

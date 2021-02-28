@@ -7,13 +7,13 @@
      password : {type: String, required: true}
     }); 
 
-    UserSchema.methods.encryptPassword = async pass => {
+    UserSchema.methods.encryptPassword = async password => {
         const salt = await bcryp.genSalt(10); 
-        return await bcryp.hash(pass, salt);
+        return await bcryp.hash(password, salt);
     }
 
-    UserSchema.methods.matchPassword = async function(pass){
-         return await bcryp.compare(pass, this.pass); 
+    UserSchema.methods.matchPassword = async function(password){
+         return await bcryp.compare(password, this.password); 
     }
 
     module.exports = mongoose.model("User", UserSchema); 
