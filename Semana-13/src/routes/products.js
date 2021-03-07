@@ -23,7 +23,6 @@ router.post('/productos/agregarProducto',async(req, res) =>{
            {text: 'Falta nombre'}
        )
    }
-
    if(erros.length >  0){
     req.flash('successMessage', errors); 
     res.redirect('/productos/listaProductos'); 
@@ -37,6 +36,24 @@ router.post('/productos/agregarProducto',async(req, res) =>{
        req.flash('successMessage', 'Producto agregado correctamente'); 
        res.redirect('/productos/listaProductos');
    }
+});
+
+
+//UPDATE 
+
+router.put('/productos/editarProducto/:_id', async(req, res) => {
+    const {_id, nombreProducto, descripcion, precio, cantidad} = req.body;
+    // encotrar el documento dentro de la collection de productos
+    await Product.findByIdAndUpdate(req.params._id, {nombreProducto, descripcion, precio,cantidad});
+    req.flash('successMessage', 'Producto editado correctamente'); 
+    res.redirect('products/listaProductos'); 
+
+});
+
+router.get('/productos/editarProducto/:_id' , async(req, res) =>{
+    const updateProduct = await Product.findById(req.params._id).lean();
+    console.log(updateProduct); 
+    res.render('products/editarProducto', {updateProduct}); 
 });
 
 module.exports = router;

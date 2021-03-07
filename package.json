@@ -1,0 +1,33 @@
+{
+  "name": "crud_mongodb_nodejs",
+  "version": "1.0.0",
+  "description": "Proyecto CRUD con MongoDB, Express y NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaolaSanchezCastillo/DFS120453131.git"
+  },
+  "author": "PaolaSanchez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PaolaSanchezCastillo/DFS120453131/issues"
+  },
+  "homepage": "https://github.com/PaolaSanchezCastillo/DFS120453131#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bootstrap-icons": "^1.4.0",
+    "connect-flash": "^0.1.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "express-session": "^1.17.1",
+    "flash": "^1.1.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.11.15",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7"
+  }
+}
