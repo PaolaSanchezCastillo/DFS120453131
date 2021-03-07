@@ -15,10 +15,31 @@
 
         <div class="card-body">
             <form action="/productos/editarProducto/{{updateProduct._id}}?_method=PUT" method="post">
+            <div class="mb-2">
             <input type="hidden" name="_method" value="PUT"> 
-            <label for="">id Producto</label>
-            <input type="text" name="_id" value="{{updateProduct._id}}" disabled='disabled'> 
-            <button type="submit">Actualizar</button>
+            <label for="" class="form-label">id Producto</label>
+            <input type="text"  class="form-control" name="_id" value="{{updateProduct._id}}" disabled='disabled'> 
+             </div>
+             <div class="mb-2">
+            <label for="" class="form-label">Nombre Producto: </label>
+            <input type="text" class="form-control"  name="nombreProducto" value="{{updateProduct.nombreProducto}}">
+            </div>
+            <div class="mb-2">
+            <label for="" class="form-label">Descripcion Producto: </label>
+            <textarea name="descripcion" class="form-control"  id="" cols="30" rows="10">
+                {{updateProduct.descripcion}}
+            </textarea>
+            </div>
+            <div class="mb-2">
+            <label for="" class="form-label">Precio Producto: </label>
+            <input type="number" name="precio" class="form-control"  value="{{updateProduct.precio}}">
+            </div>
+            <div class="mb-2">
+            <label for="" class="form-label">Cantidad Producto: </label>
+            <input type="number" name="cantidad" class="form-control"  value="{{updateProduct.cantidad}}" min="1" minlength="1">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Actualizar</button>
             </form>
         </div>
 

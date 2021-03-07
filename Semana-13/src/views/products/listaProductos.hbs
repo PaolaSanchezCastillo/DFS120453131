@@ -25,6 +25,8 @@
       <th scope="col">Nombre Productos</th>
       <th scope="col">Descripcion</th>
       <th scope="col">Fecha creacion</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Cantidad</th>
       <th scope="col">Editar</th>
       <th scope="col">Eliminar</th>
     </tr>
@@ -36,10 +38,12 @@
       <td>{{nombreProducto}}</td>
       <td>{{descripcion}}</td>
       <td>{{created_at}}</td>
+        <td>{{precio}}</td>
+      <td>{{cantidad}}</td>
       <td><a href="/productos/editarProducto/{{_id}}">
           <span class="glyphicon glyphicon-edit"></span>
         </a></td>
-      <td>  <a href="#">
+      <td>  <a href="/productos/eliminarProducto/{{_id}}">
           <span class="glyphicon glyphicon-remove"></span>
         </a></td>
     </tr>
