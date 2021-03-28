@@ -1,0 +1,18 @@
+<div class="container" *ngIf='isActive'>
+   
+    <div class="row"> 
+        <div class="col-sm-12 col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="text-center">Tu cerveza favorita de hoy</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <img class="fav-beer-image" [src]="favBeerImg" [style.height.px] ='imgHeight' [style.width.px] = 'imgWidth'/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

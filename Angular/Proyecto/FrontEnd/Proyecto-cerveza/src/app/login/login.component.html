@@ -1,0 +1,12 @@
+<h4>Login</h4>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">User</label>
+    <input type='email' name="email" [(ngModel)]="email"  class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Password</label>
+    <input type='password' name="password" [(ngModel)]="password"  class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+  </div>
+  <div class="mb-3">
+    <input type="submit" class="form-control" id="exampleFormControlInput1" value="Ingresar" (click)='login()'>
+  </div>

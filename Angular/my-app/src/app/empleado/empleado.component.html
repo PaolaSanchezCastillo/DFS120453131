@@ -1,0 +1,21 @@
+<div>
+    <label for="">Nombre : {{nombre}} </label><br>
+    <label for="">Edad: {{edad}}</label><br>
+    <label for="">Correo: {{email}}</label><br>
+    <label>Estatus: {{isActive()}}</label><br>
+
+    <table style="border: solid 1px; color: black; ">
+        <tr>
+            <td>Ventas</td>
+        </tr>
+        <tr *ngFor="let ventas of ventas">
+            <td>{{ventas}}</td>
+        </tr>
+
+    </table>
+    
+
+    <div>
+        <p *ngIf='edad>=25'>Puede ser supervisor</p>
+    </div>
+</div>
