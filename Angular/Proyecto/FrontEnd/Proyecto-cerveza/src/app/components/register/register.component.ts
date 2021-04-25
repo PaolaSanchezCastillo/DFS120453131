@@ -8,28 +8,24 @@ import {Router} from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  user = {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+    ) { }
 
- user = { }
-
-
- constructor(
-   private authService : AuthService,
-   private router : Router
- ){
-   
- }
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
-
-login(){
-  this.authService.loginUsuario(this.user).subscribe(
-    res=> {
-      console.log(res); 
-      localStorage.setItem('token', res.token); 
-      this.router.navigate(['/']); 
-    }, 
-    error => console.log(error)
-  )
-}
+  registrarse() {
+    this.authService.registrarUsuario(this.user)
+      .subscribe(
+        res => {
+          console.log(res);
+          localStorage.setItem('token', res.token);
+          this.router.navigate(['/private']);
+        },
+        err => console.log(err)
+      )
+  }
 }
