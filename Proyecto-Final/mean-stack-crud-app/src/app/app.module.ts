@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { UsuarioCreateComponent } from './components/usuario-create/usuario-create.component';
 import { UsuarioEditComponent } from './components/usuario-edit/usuario-edit.component';
 import { UsuarioListComponent } from './components/usuario-list/usuario-list.component';
+import { ApiService} from './service/api.service'; 
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { UsuarioListComponent } from './components/usuario-list/usuario-list.com
     AppRoutingModule, 
     HttpClientModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
