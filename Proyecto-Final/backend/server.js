@@ -1,63 +1,49 @@
-let express = require('express'); 
-let path = require('path'); 
-let mongoose = require('mongoose'); 
-let cors = require('cors'); 
-let bodyParser = require('body-parser'); 
+let express = require('express'),
+   path = require('path'),
+   mongoose = require('mongoose'),
+   cors = require('cors'),
+   bodyParser = require('body-parser'),
+   dbConfig = require('./database/db');
+   const createError = require('http-errors');
 
-dbConfig = require('./database/db'); 
-
-// Configurar la BD 
-
-mongoose.Promise = global.Promise; 
+// Connecting with mongo db
+mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.db, {
-    useNewUrlParser : true, 
+   useNewUrlParser: true
+}).then(() => {
+      console.log('Database sucessfully connected')
+   },
+   error => {
+      console.log('Database could not connected: ' + error)
+   }
+)
 
-}).then(
-    ()=>{
-        console.log("Conexion exitosa")
-    }, 
-    error=>{
-console.log('No se logro la conexion : ' + error)
-    }
-); 
+// Setting up port with express js
+const userRoute = require('../backend/routes/user.route')
+const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+   extended: false
+}));
+app.use(cors()); 
+app.use(express.static(path.join(__dirname, 'dist/mean-stack-crud-app')));
+app.use('/', express.static(path.join(__dirname, 'dist/mean-stack-crud-app')));
+app.use('/api', userRoute);
 
 
-// Configar el API 
+const port = process.env.PORT || 4000;
+const server = app.listen(port, () => {
+  console.log('Connected to port ' + port)
+})
 
-// Especificar la conexion a las rutas 
 
-// Especificar las rutas
- const userRoute  = require('../backend/routes/user.route'); 
- const app = express(); 
+app.use((req, res, next) => {
+   next(createError(404));
+});
 
- app.use(bodyParser.json()); 
- app.use(bodyParser.urlencoded({
-     extended: false
- })); 
 
- app.use(cors); 
- //Especificacion de directorios
-
- app.use(express.static(path.join(__dirname, 'dist/mean-stack-crud-app'))); 
- app.use('/', express.static(path.join(__dirname, 'dist/msean-stack-crud-app')));
-
- app.use('/api', userRoute); 
-
- const port = process.env.PORT || 3000; 
- 
- const server = app.listen(port, ()=>{
-     console.log('Servidor conectado en el puerto' , + port); 
- }); 
-
- // Error Handler
-
-//  app.use((req, res, next) =>{
-//      next(createError(404)); 
-//  }); 
-
-//  app.use(function(req, res, next){
-//      console.error(err.message); // Log error 
-//      if(!err.statusCode) 
-//  })
-
- 
+app.use(function (err, req, res, next) {
+  console.error(err.message); 
+  if (!err.statusCode) err.statusCode = 500; 
+  res.status(err.statusCode).send(err.message); 
+});

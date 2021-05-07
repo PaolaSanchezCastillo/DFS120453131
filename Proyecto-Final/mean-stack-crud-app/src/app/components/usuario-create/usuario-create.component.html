@@ -20,12 +20,12 @@
 
                 <div class="form-group">
                     <label for="">Tipo</label>
-                    <select name="" id="" class="custom-select form-control" (change)='updatedType($event.tarjet.value)' formControlName="tipo">
+                    <select class="custom-select form-control" (change)='updatedType($any($event.target).value)' formControlName="tipo">
                         <option>
                         Selecciona ... 
                         </option>
-                        <option *ngFor="let userType of UserType" value="{{userType]}">  
-                            {{userType}}
+                        <option *ngFor="let UserType of UserType" value="{{UserType}}">  
+                            {{UserType}}
                         </option> 
                     </select>
                     <div class="invalid-feedback" *ngIf="submitted && myForm.name.errors?.required" >

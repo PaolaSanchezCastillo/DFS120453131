@@ -1,7 +1,7 @@
 import { Component, OnInit , NgZone} from '@angular/core';
 import {ApiService} from './../../service/api.service'; 
 import {Router} from '@angular/router'; 
-import {FormGroup,  FormBuilder, Validators} from '@angular/forms'
+import {FormGroup,  FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms'
 
 @Component({
   selector: 'app-usuario-create',
@@ -39,30 +39,38 @@ export class UsuarioCreateComponent implements OnInit {
    
   }
 
-  updatedType(e : any){
+  updatedType( e: any){
     this.userForm.get('tipo')?.setValue( e, {
       onlySelf : true
     })
+    
   }
 
   get myForm(){
     return this.userForm.controls; 
   }
 
-  onSubmit(){
-    this.submitted = true; 
-    if(!this.userForm.valid){
-      return false; 
-    }else{
+  onSubmit() {
+    this.submitted = true;
+    if (this.userForm.invalid) {
+      return false;
+    } else {
+      console.log('Entra aqui');
+      console.log(this.userForm.value);
       this.apiService.createUsuario(this.userForm.value).subscribe(
+     
         (res) => {
-          console.log('El usuario se creo satisfactoriamente')
-          this.ngZone.run(() => this.router.navigateByUrl('/usuarios-list')) 
+          console.log('User successfully created!')
+          console.log(res);
+          this.ngZone.run(() => this.router.navigateByUrl('/usuarios-list'))
         }, (error) => {
-          console.log(error); 
-        }
-      )
+          console.log(error);
+          
+        });
+      
     }
+
+    return console.log(this.submitted ); 
   }
 
 }

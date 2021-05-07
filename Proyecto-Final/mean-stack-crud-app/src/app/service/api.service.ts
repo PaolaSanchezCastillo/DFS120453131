@@ -3,13 +3,14 @@ import {Observable, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators'; 
 
 import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http'
+import { Usuario } from 'src/model/usuario.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  baseUri: string  = 'htpp://3000/api'; 
+  baseUri: string  = 'http://localhost:4000/api'; 
   headers = new HttpHeaders().set('Content-Type', 'aplication/json'); 
 
   constructor( private http : HttpClient) {
@@ -17,6 +18,7 @@ export class ApiService {
 
    //create
    createUsuario(data :any): Observable<any> {
+     console.log(data);
      let url = `${this.baseUri}/create`; 
      return this.http.post(url, data)
      .pipe(
@@ -39,15 +41,18 @@ export class ApiService {
 
    }
 
-    updateUsuario(id: any, data: any){
-      let url = `${this.baseUri}/update/${id}`; 
-      return this.http.put(url, data, {headers: this.headers}).pipe(
-        catchError(this.errorMsg)
-      )
-    }
+   updateUsuario(id: any, data: any): Observable<any> {
+    let url = `${this.baseUri}/update/${id}`;
+    console.log('En el service');
+    console.log(data);
+    return this.http.put<Usuario>(url, data).pipe(
+      
+      catchError(this.errorMsg)
+    )
+  }
 
 
-    deleteUsuario(id: any){
+    deleteUsuario(id: any): Observable<any>{
       let url = `${this.baseUri}/delete/${id}`; 
       return this.http.delete(url, {headers: this.headers}).pipe(
         catchError(this.errorMsg)

@@ -8,6 +8,7 @@ import { UsuarioCreateComponent } from './components/usuario-create/usuario-crea
 import { UsuarioEditComponent } from './components/usuario-edit/usuario-edit.component';
 import { UsuarioListComponent } from './components/usuario-list/usuario-list.component';
 import { ApiService} from './service/api.service'; 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import { ApiService} from './service/api.service';
   imports: [
     BrowserModule,
     AppRoutingModule, 
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
